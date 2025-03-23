@@ -32,9 +32,9 @@ function App() {
     const formattedItems = gamesData.map((game) => ({
       title: game.name,
       description: `Available on: ${
-        (game.platforms ?? []).map((id) => platformLookup[id] || "Unknown").join(", ") || "No platform listed"
+        (game.platforms).map((id: number) => platformLookup[id] || "Unknown").join(", ") || "No platform listed"
       }`,
-      category: game.platforms?.map((id) => platformLookup[id] || "Unknown") || [],
+      category: game.platforms?.map((id: number) => platformLookup[id] || "Unknown") || [],
     }));
 
     setItems(formattedItems);

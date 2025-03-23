@@ -66,8 +66,8 @@ async function getGames() {
 
     const API_URL = "https://api.igdb.com/v4/games";
 
-    while (stillMoreData) {
-        const query = `fields id, name, platforms, category; where category = 0 & platforms != null; limit 500; offset ${offset};`;
+    while (allGames.length < 10) {
+        const query = `fields id, name, platforms, category; where category = 0 & platforms != null; limit 10; offset ${offset};`;
 
         try {
             const response = await fetch(API_URL, {
