@@ -112,4 +112,4 @@ async function getGames() {
     });
 }
 // Fetch games list
-getPlatform();
+getGames();
