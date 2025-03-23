@@ -1,5 +1,5 @@
-CLIENT_ID = 'uydjma3hg6f130ucg3i3351pc0y90u'
-const accessToken = '8pkhyrmxxzsrmjyfyxo8ui0bi7t0os';
+const CLIENT_ID = process.env.CLIENT_ID
+const accessToken = process.env.ACCESS_TOKEN;
 
 async function getGames() {
     let offset = 0
