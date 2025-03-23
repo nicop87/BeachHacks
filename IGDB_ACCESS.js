@@ -4,6 +4,7 @@ const { all } = require('async');
 const CLIENT_ID = process.env.CLIENT_ID
 const accessToken = process.env.ACCESS_TOKEN;
 
+//Grabs all of the platforms within the IGDB Database
 async function getPlatform() {
 
     const API_URL = "https://api.igdb.com/v4/platforms";
@@ -57,7 +58,7 @@ async function getPlatform() {
     
 }
 
-
+//Grabs all of the games
 async function getGames() {
     let offset = 0;
     let allGames = [];
@@ -67,8 +68,9 @@ async function getGames() {
     const API_URL = "https://api.igdb.com/v4/games";
 
     while (stillMoreData) {
-        const query = `fields id, name, platforms, category, age_ratings; where category = 0 & platforms != null & (
-        age_ratings.rating != (5, 11, 12, 38, 39, 33, 26, 17, 16)); offset ${offset};`;
+        const query = `fields id, name, platforms, category, age_ratings; where category = 0 & platforms != null & 
+
+        (age_ratings.rating = 9 | age_ratings.rating = 8); limit 500; offset ${offset};`;
 
         try {
             const response = await fetch(API_URL, {
