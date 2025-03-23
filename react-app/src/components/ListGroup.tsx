@@ -162,7 +162,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
               padding: 0,
               listStyle: "none",
               textAlign: "center",
-              gridTemplateColumns: "repeat(3, 1fr)"
+              gridTemplateColumns: "repeat(3, 1fr)",
             }}
           >
             {paginatedItems.map((item, index) => (
