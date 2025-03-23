@@ -134,7 +134,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
                 border: "1px solid #ddd",
                 cursor: "pointer",
                 backgroundColor: selectedCategories.includes(category)
-                  ? "#d1ecf1"
+                  ? "#00246B"
                   : "white",
                 color: selectedCategories.includes(category)
                   ? "white"
