@@ -46,7 +46,7 @@ async function getPlatform() {
     }
     
     // Write to a file
-    fs.writeFile("./react-app/src/data/platforms.json", JSON.stringify(allPlatforms, null, 2), (err) => {
+    fs.writeFile("platforms.json", JSON.stringify(allPlatforms, null, 2), (err) => {
         if (err) {
             console.error("Error writing file:", err);
         } else {
@@ -66,8 +66,8 @@ async function getGames() {
 
     const API_URL = "https://api.igdb.com/v4/games";
 
-    while (allGames.length < 10) {
-        const query = `fields id, name, platforms, category; where category = 0 & platforms != null; limit 10; offset ${offset};`;
+    while (stillMoreData) {
+        const query = `fields id, name, platforms, category; where category = 0 & platforms != null; limit 500; offset ${offset};`;
 
         try {
             const response = await fetch(API_URL, {
@@ -103,7 +103,7 @@ async function getGames() {
     }
 
     // Write to a file
-    fs.writeFile("./react-app/src/data/data.json", JSON.stringify(allGames, null, 2), (err) => {
+    fs.writeFile("data.json", JSON.stringify(allGames, null, 2), (err) => {
         if (err) {
             console.error("Error writing file:", err);
         } else {
@@ -112,4 +112,4 @@ async function getGames() {
     });
 }
 // Fetch games list
-getPlatform();
+getGames();
