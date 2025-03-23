@@ -51,7 +51,7 @@ async function getPlatform() {
         if (err) {
             console.error("Error writing file:", err);
         } else {
-            console.log("JSON file has been saved!");
+            console.log("JSON file platforms has been saved!");
         }
     });
 
@@ -70,7 +70,7 @@ async function getGames() {
     while (stillMoreData) {
         const query = `fields id, name, platforms, category, age_ratings; where category = 0 & platforms != null & 
 
-        (age_ratings.rating = 9 | age_ratings.rating = 8); limit 500; offset ${offset};`;
+        (age_ratings.rating != 9 & age_ratings.rating != 8); limit 500; offset ${offset};`;
 
         try {
             const response = await fetch(API_URL, {
@@ -110,7 +110,7 @@ async function getGames() {
         if (err) {
             console.error("Error writing file:", err);
         } else {
-            console.log("JSON file has been saved!");
+            console.log("JSON file data has been saved!");
         }
     });
 }
