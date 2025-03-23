@@ -120,12 +120,12 @@
     "name": "Vectrex"
   },
   {
-    "id": 145,
-    "name": "AY-3-8603"
-  },
-  {
     "id": 87,
     "name": "Virtual Boy"
+  },
+  {
+    "id": 145,
+    "name": "AY-3-8603"
   },
   {
     "id": 386,
@@ -176,6 +176,10 @@
     "name": "Family Computer Disk System"
   },
   {
+    "id": 89,
+    "name": "Microvision"
+  },
+  {
     "id": 94,
     "name": "Commodore Plus/4"
   },
@@ -190,10 +194,6 @@
   {
     "id": 129,
     "name": "Texas Instruments TI-99"
-  },
-  {
-    "id": 89,
-    "name": "Microvision"
   },
   {
     "id": 482,
@@ -228,16 +228,16 @@
     "name": "Tapwave Zodiac"
   },
   {
+    "id": 88,
+    "name": "Odyssey"
+  },
+  {
     "id": 134,
     "name": "Acorn Electron"
   },
   {
     "id": 136,
     "name": "Neo Geo CD"
-  },
-  {
-    "id": 88,
-    "name": "Odyssey"
   },
   {
     "id": 97,

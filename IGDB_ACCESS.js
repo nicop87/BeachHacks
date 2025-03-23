@@ -46,7 +46,7 @@ async function getPlatform() {
     }
     
     // Write to a file
-    fs.writeFile("platforms.json", JSON.stringify(allPlatforms, null, 2), (err) => {
+    fs.writeFile("./react-app/src/data/platforms.json", JSON.stringify(allPlatforms, null, 2), (err) => {
         if (err) {
             console.error("Error writing file:", err);
         } else {
@@ -103,7 +103,7 @@ async function getGames() {
     }
 
     // Write to a file
-    fs.writeFile("data.json", JSON.stringify(allGames, null, 2), (err) => {
+    fs.writeFile("./react-app/src/data/data.json", JSON.stringify(allGames, null, 2), (err) => {
         if (err) {
             console.error("Error writing file:", err);
         } else {
@@ -112,4 +112,4 @@ async function getGames() {
     });
 }
 // Fetch games list
-getGames();
+getPlatform();
