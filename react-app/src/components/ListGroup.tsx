@@ -42,7 +42,9 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
   const filteredItems = items
     .filter((item) =>
       selectedCategories.length > 0
-        ? selectedCategories.every((category) => item.category.includes(category))
+        ? selectedCategories.every((category) =>
+            item.category.includes(category)
+          )
         : true
     )
     .filter(
@@ -53,11 +55,28 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
 
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedItems = filteredItems.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedItems = filteredItems.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   return (
-    <div style={{ minHeight: "100vh", padding: "20px" }}>
-      <h1 style={{ fontWeight: "bold", backgroundColor: "#3498db", padding: "10px", color: "white", textAlign: "center" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        padding: "20px",
+        backgroundColor: "#CADCFC",
+      }}
+    >
+      <h1
+        style={{
+          fontWeight: "bold",
+          backgroundColor: " #00246B",
+          padding: "10px",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
         {heading}
       </h1>
 
@@ -96,7 +115,15 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
       </div>
 
       {categoriesVisible && (
-        <div style={{ textAlign: "center", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "10px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: "10px",
+          }}
+        >
           {allCategories.map((category, index) => (
             <button
               key={index}
@@ -106,8 +133,12 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
                 borderRadius: "5px",
                 border: "1px solid #ddd",
                 cursor: "pointer",
-                backgroundColor: selectedCategories.includes(category) ? "#3498db" : "white",
-                color: selectedCategories.includes(category) ? "white" : "#3498db",
+                backgroundColor: selectedCategories.includes(category)
+                  ? "#d1ecf1"
+                  : "white",
+                color: selectedCategories.includes(category)
+                  ? "white"
+                  : "#3498db",
                 transition: "0.3s",
               }}
             >
@@ -118,10 +149,22 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
       )}
 
       {paginatedItems.length === 0 ? (
-        <p style={{ textAlign: "center", fontStyle: "italic" }}>No items found</p>
+        <p style={{ textAlign: "center", fontStyle: "italic" }}>
+          No items found
+        </p>
       ) : (
         <>
-          <ul className="list-group" style={{ display: "grid", gap: "10px", padding: 0, listStyle: "none", textAlign: "center" }}>
+          <ul
+            className="list-group"
+            style={{
+              display: "grid",
+              gap: "10px",
+              padding: 0,
+              listStyle: "none",
+              textAlign: "center",
+              gridTemplateColumns: "repeat(3, 1fr)"
+            }}
+          >
             {paginatedItems.map((item, index) => (
               <li
                 key={index}
@@ -131,7 +174,8 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
                   padding: "10px",
                   borderRadius: "5px",
                   cursor: "pointer",
-                  backgroundColor: selectedIndex === index ? "#e0f7fa" : "white",
+                  backgroundColor:
+                    selectedIndex === index ? "#e0f7fa" : "white",
                   transition: "background-color 0.3s",
                 }}
                 onClick={() => {
@@ -140,7 +184,9 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
                 }}
               >
                 <strong>{item.title}</strong>
-                {selectedIndex === index && <p className="mt-2 text-muted">{item.description}</p>}
+                {selectedIndex === index && (
+                  <p className="mt-2 text-muted">{item.description}</p>
+                )}
               </li>
             ))}
           </ul>
@@ -149,7 +195,16 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
             {currentPage > 1 && (
               <button
                 onClick={() => setCurrentPage((prev) => prev - 1)}
-                style={{ padding: "10px 15px", margin: "5px", borderRadius: "5px", border: "1px solid #ddd", cursor: "pointer", backgroundColor: "#3498db", color: "white", transition: "0.3s" }}
+                style={{
+                  padding: "10px 15px",
+                  margin: "5px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  cursor: "pointer",
+                  backgroundColor: "#3498db",
+                  color: "white",
+                  transition: "0.3s",
+                }}
               >
                 Previous Page
               </button>
@@ -157,7 +212,16 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
             {currentPage < totalPages && (
               <button
                 onClick={() => setCurrentPage((prev) => prev + 1)}
-                style={{ padding: "10px 15px", margin: "5px", borderRadius: "5px", border: "1px solid #ddd", cursor: "pointer", backgroundColor: "#3498db", color: "white", transition: "0.3s" }}
+                style={{
+                  padding: "10px 15px",
+                  margin: "5px",
+                  borderRadius: "5px",
+                  border: "1px solid #ddd",
+                  cursor: "pointer",
+                  backgroundColor: "#3498db",
+                  color: "white",
+                  transition: "0.3s",
+                }}
               >
                 Next Page
               </button>
