@@ -18,7 +18,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
   const [categoriesVisible, setCategoriesVisible] = useState(false);
-  const itemsPerPage = 100;
+  const itemsPerPage = 99;
 
   // Extract unique categories from items
   const allCategories = [...new Set(items.flatMap((item) => item.category))];
