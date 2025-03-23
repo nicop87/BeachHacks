@@ -2,9 +2,8 @@ import ListGroup from "./components/ListGroup";
 
 function App() {
   const items = [
-    { title: "Person", description: "Why are you here" },
-    { title: "Person", description: "Why are you here" },
-    { title: "Person", description: "Why are you here" },
+    { title: "Person1", description: "Why are you here", category: ['Android','IOS'] },
+    { title: "Person2", description: "Why are you here", category: ['PC','IOS'] },
   ];
   return (
     <div>
