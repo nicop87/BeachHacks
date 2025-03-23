@@ -17,6 +17,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [categoriesVisible, setCategoriesVisible] = useState(false);
   const itemsPerPage = 100;
 
   // Extract unique categories from items
@@ -25,20 +26,19 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
   const handleCategoryChange = (category: string) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
-        ? prev.filter((c) => c !== category) // Remove if already selected
-        : [...prev, category] // Add if not selected
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
     );
     setSelectedIndex(null);
-    setCurrentPage(1); // Reset to page 1 when category changes
+    setCurrentPage(1);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value.toLowerCase());
     setSelectedIndex(null);
-    setCurrentPage(1); // Reset to page 1 when searching
+    setCurrentPage(1);
   };
 
-  // Apply category and search filtering
   const filteredItems = items
     .filter((item) =>
       selectedCategories.length > 0
@@ -51,7 +51,6 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
         item.description.toLowerCase().includes(searchTerm)
     );
 
-  // Pagination Logic
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedItems = filteredItems.slice(startIndex, startIndex + itemsPerPage);
@@ -62,7 +61,6 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
         {heading}
       </h1>
 
-      {/* Search Input */}
       <div style={{ textAlign: "center", marginBottom: "15px" }}>
         <input
           type="text"
@@ -80,28 +78,45 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
         />
       </div>
 
-      {/* Category Selection */}
-      <div style={{ textAlign: "center", margin: "20px 0", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "10px" }}>
-        {allCategories.map((category, index) => (
-          <button
-            key={index}
-            onClick={() => handleCategoryChange(category)}
-            style={{
-              padding: "8px 15px",
-              borderRadius: "5px",
-              border: "1px solid #ddd",
-              cursor: "pointer",
-              backgroundColor: selectedCategories.includes(category) ? "#3498db" : "white",
-              color: selectedCategories.includes(category) ? "white" : "#3498db",
-              transition: "0.3s",
-            }}
-          >
-            {category}
-          </button>
-        ))}
+      <div style={{ textAlign: "center", margin: "20px 0" }}>
+        <button
+          onClick={() => setCategoriesVisible(!categoriesVisible)}
+          style={{
+            padding: "10px 15px",
+            borderRadius: "5px",
+            border: "1px solid #ddd",
+            cursor: "pointer",
+            backgroundColor: "#3498db",
+            color: "white",
+            transition: "0.3s",
+          }}
+        >
+          {categoriesVisible ? "Hide Categories" : "Show Categories"}
+        </button>
       </div>
 
-      {/* Show Filtered Items */}
+      {categoriesVisible && (
+        <div style={{ textAlign: "center", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "10px" }}>
+          {allCategories.map((category, index) => (
+            <button
+              key={index}
+              onClick={() => handleCategoryChange(category)}
+              style={{
+                padding: "8px 15px",
+                borderRadius: "5px",
+                border: "1px solid #ddd",
+                cursor: "pointer",
+                backgroundColor: selectedCategories.includes(category) ? "#3498db" : "white",
+                color: selectedCategories.includes(category) ? "white" : "#3498db",
+                transition: "0.3s",
+              }}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      )}
+
       {paginatedItems.length === 0 ? (
         <p style={{ textAlign: "center", fontStyle: "italic" }}>No items found</p>
       ) : (
@@ -120,7 +135,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
                   transition: "background-color 0.3s",
                 }}
                 onClick={() => {
-                  setSelectedIndex(index === selectedIndex ? null : index); // Toggle selection
+                  setSelectedIndex(index === selectedIndex ? null : index);
                   onSelectItem(item);
                 }}
               >
@@ -130,39 +145,19 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
             ))}
           </ul>
 
-          {/* Pagination Controls */}
           <div style={{ textAlign: "center", marginTop: "20px" }}>
             {currentPage > 1 && (
               <button
                 onClick={() => setCurrentPage((prev) => prev - 1)}
-                style={{
-                  padding: "10px 15px",
-                  margin: "5px",
-                  borderRadius: "5px",
-                  border: "1px solid #ddd",
-                  cursor: "pointer",
-                  backgroundColor: "#3498db",
-                  color: "white",
-                  transition: "0.3s",
-                }}
+                style={{ padding: "10px 15px", margin: "5px", borderRadius: "5px", border: "1px solid #ddd", cursor: "pointer", backgroundColor: "#3498db", color: "white", transition: "0.3s" }}
               >
                 Previous Page
               </button>
             )}
-
             {currentPage < totalPages && (
               <button
                 onClick={() => setCurrentPage((prev) => prev + 1)}
-                style={{
-                  padding: "10px 15px",
-                  margin: "5px",
-                  borderRadius: "5px",
-                  border: "1px solid #ddd",
-                  cursor: "pointer",
-                  backgroundColor: "#3498db",
-                  color: "white",
-                  transition: "0.3s",
-                }}
+                style={{ padding: "10px 15px", margin: "5px", borderRadius: "5px", border: "1px solid #ddd", cursor: "pointer", backgroundColor: "#3498db", color: "white", transition: "0.3s" }}
               >
                 Next Page
               </button>
