@@ -44,7 +44,7 @@ function App() {
     <div>
       <ListGroup
         items={items}
-        heading="Game List"
+        heading="PlayLibrary"
         onSelectItem={(item) => console.log("Selected:", item)}
       />
     </div>
