@@ -91,7 +91,7 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
             transition: "0.3s",
           }}
         >
-          {categoriesVisible ? "Hide Categories" : "Show Categories"}
+          {categoriesVisible ? "Hide Console" : "Show Console"}
         </button>
       </div>
 
